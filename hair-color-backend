@@ -1,0 +1,30 @@
+hair-color-backend/
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml
+├── migrations/
+│   ├── 001_create_users_clients_photos.sql
+│   ├── 002_create_formulas_haircuts.sql
+├── src/
+│   ├── controllers/
+│   │   ├── formulas.js
+│   │   ├── clients.js
+│   │   ├── photos.js
+│   │   └── haircuts.js
+│   ├── services/
+│   │   ├── openai.js
+│   │   └── storage.js
+│   ├── db/
+│   │   └── supabaseClient.js
+│   ├── routes/
+│   │   └── index.js
+│   ├── middlewares/
+│   │   └── errorHandler.js
+│   ├── utils/
+│   │   └── parseJsonSafe.js
+│   └── server.js
+├── .env.example
+├── package.json
+├── jest.config.cjs
+├── README.md
+└── .gitignore
