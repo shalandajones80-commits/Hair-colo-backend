@@ -1,0 +1,10 @@
+ # Hair Color Backend (Render + Supabase + Cloudinary)
+ 
+Quickstart:
+1. Create a Supabase project and run migrations from `/migrations`.
+2. Create Cloudinary account and unsigned upload preset.
+3. Fill `.env` with keys.
+4. Run `npm ci` then `npm run dev`.
+5. Connect repo to Render and create a Web Service (start: `npm start`) and add env vars.
+
+See the project README and the files in /src for full details.
