@@ -1,0 +1,26 @@
+{
+  "name": "hair-color-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --runInBand"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.32.0",
+    "cross-fetch": "^3.1.5",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "joi": "^17.9.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "jest": "^29.7.0",
+    "supertest": "^6.4.0",
+    "nodemon": "^2.0.22"
+  }
+}
