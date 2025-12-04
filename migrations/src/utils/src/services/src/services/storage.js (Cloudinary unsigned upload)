@@ -1,0 +1,31 @@
+// src/services/storage.js
+import dotenv from "dotenv";
+import FormData from "form-data";
+import fetch from "cross-fetch";
+dotenv.config();
+
+const CLOUDINARY_URL = process.env.CLOUDINARY_URL || "";
+const CLOUDINARY_UNSIGNED_PRESET = process.env.CLOUDINARY_UNSIGNED_PRESET || "";
+
+export async function uploadToCloudinary(fileBuffer, filename) {
+  if (!CLOUDINARY_URL) throw new Error("No CLOUDINARY_URL set in .env");
+  if (!CLOUDINARY_UNSIGNED_PRESET) throw new Error("CLOUDINARY_UNSIGNED_PRESET not set");
+
+  // parse cloudinary url: cloudinary://key:secret@cloudname  (we only need cloudname)
+  const match = CLOUDINARY_URL.match(/@(.+)$/);
+  const cloudName = match ? match[1] : null;
+  if (!cloudName) throw new Error("Invalid CLOUDINARY_URL format");
+
+  const form = new FormData();
+  form.append("file", fileBuffer, { filename });
+  form.append("upload_preset", CLOUDINARY_UNSIGNED_PRESET);
+
+  const resp = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+    method: "POST",
+    body: form,
+  });
+
+  const data = await resp.json();
+  if (!resp.ok) throw new Error("Cloudinary upload failed: " + JSON.stringify(data));
+  return data.secure_url;
+}
